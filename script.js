@@ -1,27 +1,24 @@
-$ideaTitle = $('.input-title');
-$ideaBody = $('.input-body');
-$ideaSave = $('.save-button');
-$ideaSearch = $('.search');
-$anchor = $('.card-section');
 recreateCards();
 
-$ideaSave.on('click', newIdea);
-$ideaTitle.on('keyup', toggleButton);
-$ideaBody.on('keyup', toggleButton);
+$('.card-section').on('click', '.delete-button', deleteCard);
+$('.card-section').on('click', '.upvote', upVote);
+$('.card-section').on('click', '.downvote', downVote);
+$('.save-button').on('click', newIdea);
+$('.input-title').on('keyup', toggleButton);
+$('.input-body').on('keyup', toggleButton);
 $('.search').on('keyup', filterIdeas);
 
-function toggleButton () {
-  $ideaTitle = $('.input-title');
-  if ($ideaTitle.val() === "" && $ideaBody.val() === "") {
-    $ideaSave.prop("disabled", true);
+function toggleButton () {  
+  if ($('.input-title').val() === "" || $('.input-body').val() === "") {
+    $('.save-button').prop("disabled", true);
   } else {
-    $ideaSave.prop("disabled", false);
+    $('.save-button').prop("disabled", false);
   }
 }
 
 function newIdea() {
-  var ideaTitle = $ideaTitle.val();
-  var ideaBody = $ideaBody.val();
+  var ideaTitle = $('.input-title').val();
+  var ideaBody = $('.input-body').val();
   var newestIdea = new CardInfo(ideaTitle, ideaBody);
   cardCreator(newestIdea);
   storeObject(newestIdea);
@@ -30,6 +27,7 @@ function newIdea() {
 
 function clearInputFields() {
     $('.input').val('');
+    $('.save-button').prop("disabled", true);
 };
 
 function CardInfo (title, body) {
@@ -40,7 +38,7 @@ function CardInfo (title, body) {
 };
 
 function cardCreator(idea) {
-  $anchor.prepend(`<article id=${idea.id} class="card">
+  $('.card-section').prepend(`<article id=${idea.id} class="card">
                       <h2 class=".title-display">${idea.title}</h2>
                       <input type="button" name="delete button" class="delete-button">
                       <p class="card-body">${idea.body}</p>
@@ -64,9 +62,6 @@ function recreateCards() {
   }
 }
 
-$('.card-section').on('click', '.delete-button', deleteCard);
-$('.card-section').on('click', '.upvote', upVote);
-$('.card-section').on('click', '.downvote', downVote);
 
 
 
