@@ -85,13 +85,12 @@ function deleteCard() {
 }
 
 function upVote() {
-  console.log(this.siblings());
   var id = this.closest('article').id
   var ideaObject = JSON.parse(localStorage.getItem(id))
   if (ideaObject.quality === 'swill') {
     ideaObject.quality = 'plausible';
     localStorage.setItem(id,JSON.stringify(ideaObject));
-    $(this).siblings().hasClass('quality-text').text('plausible');
+    $('#'+id.toString()+' .quality-text').text('bulllshit');
   }
 };
 
@@ -105,7 +104,7 @@ function checkQuality() {
   if (quality === 1) {
     $('.quality-text').text('plausible');
   } else if (quality === 2) {
-    $('.quality-text').text('genius');
+    $('#'+id.toString()+'.quality-text').text('genius');
   } else {
     $('.quality-text').text('swill');
   }
