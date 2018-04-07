@@ -32,7 +32,7 @@ function newIdea() {
   var ideaBody = $ideaBody.val();
   var newestIdea = new CardInfo(ideaTitle, ideaBody);
   cardCreater(newestIdea);
-  objectToString(newestIdea);
+  storeObject(newestIdea);
   clearInputFields();
 };
 
@@ -60,9 +60,8 @@ function cardCreater(idea) {
                     </article>`);
 };
 
-function objectToString(newestIdea) {
-  var newObjectString = JSON.stringify(newestIdea);
-  localStorage.setItem(newestIdea.id, newObjectString);
+function storeObject(idea) {
+  localStorage.setItem(idea.id, JSON.stringify(idea));
 }
 
 function recreateCards() {
@@ -75,7 +74,7 @@ function recreateCards() {
 
 $('.card-section').on('click', '.delete-button', deleteCard);
 $('.card-section').on('click', '.upvote', upVote);
-// $('.card-section').on('click', '.downvote', upVote);
+$('.card-section').on('click', '.downvote', downVote);
 
 
 
@@ -89,23 +88,26 @@ function upVote() {
   var ideaObject = JSON.parse(localStorage.getItem(id))
   if (ideaObject.quality === 'swill') {
     ideaObject.quality = 'plausible';
-    localStorage.setItem(id,JSON.stringify(ideaObject));
-    $('#'+id.toString()+' .quality-text').text('bulllshit');
+    storeObject(ideaObject);
+    $('#'+id.toString()+' .quality-text').text('plausible');
+  } else if (ideaObject.quality === 'plausible') {
+    ideaObject.quality = 'genius';
+    storeObject(ideaObject);
+    $('#'+id.toString()+' .quality-text').text('genius');
   }
 };
 
-// $anchor.on('click', function () {
-//   console.log('terrible idea');
-//   quality -= 1;
-//   checkQuality ();
-// });
-
-function checkQuality() {
-  if (quality === 1) {
-    $('.quality-text').text('plausible');
-  } else if (quality === 2) {
-    $('#'+id.toString()+'.quality-text').text('genius');
-  } else {
-    $('.quality-text').text('swill');
+function downVote() {
+  var id = this.closest('article').id
+  var ideaObject = JSON.parse(localStorage.getItem(id))
+  if (ideaObject.quality === 'genius') {
+    ideaObject.quality = 'plausible';
+    storeObject(ideaObject);
+    $('#'+id.toString()+' .quality-text').text('plausible');
+  } else if (ideaObject.quality === 'plausible') {
+    ideaObject.quality = 'swill';
+    storeObject(ideaObject);
+    $('#'+id.toString()+' .quality-text').text('swill');
   }
 };
+
