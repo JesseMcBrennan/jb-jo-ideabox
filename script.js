@@ -7,18 +7,36 @@ $('.save-button').on('click', newToDo);
 $('.input-title').on('keyup', toggleButton);
 $('.input-body').on('keyup', toggleButton);
 $('.search').on('keyup', filterToDos);
-
+$('.card-section').on('change', '.check-completed', toggleCompleted);
+$('.show-completed').on('click', showCompleted)
 
 function updateBody () {
-  console.log('oooooo')
   var id = this.closest('article').id
   var toDoObject = JSON.parse(localStorage.getItem(id));
   toDoObject.body = $('#' + id.toString() + ' .card-body').text();
   storeObject(toDoObject);
 }
 
+function toggleCompleted() {
+  var id = this.closest('article').id
+  var toDoObject = JSON.parse(localStorage.getItem(id));
+  toDoObject.completed = !toDoObject.completed
+  storeObject(toDoObject)
+  $('#'+id.toString()).toggleClass('task-completed');
+}
+
+function showCompleted() { 
+  for (var i = 0; i < localStorage.length; i++) {
+    var returnCard = localStorage.getItem(localStorage.key(i));
+    var parsedCard = JSON.parse(returnCard);
+    if (parsedCard.completed) { 
+      cardCreator(parsedCard); 
+      $('#'+ parsedCard.id.toString()).prop("checked")
+    }
+  }
+}
+
 function updateTitle () {
-  console.log("iiiii")
   var id = this.closest('article').id
   var toDoObject = JSON.parse(localStorage.getItem(id));
   toDoObject.title = $('#' + id.toString() +' .title-display').text();
@@ -52,6 +70,7 @@ function CardInfo (title, body) {
   this.body = body;
   this.priority = 'none';
   this.id = Date.now();
+  this.completed = false;
 };
 
 function cardCreator(toDo) {
@@ -63,7 +82,7 @@ function cardCreator(toDo) {
                       <input type="button" class="arrow-button downvote">
                       <h3 class="priority">
                         <span class="priority-text">priority: ${toDo.priority}</span>
-                        <div><input id="check-completed" class="check-box" type="checkbox"><label for="check-completed">completed</label><div>
+                        <div><input id="check-completed" class="check-completed" type="checkbox"><label for="check-completed">completed</label><div>
                       </h3>
                     </article>`);
 };
@@ -76,8 +95,11 @@ function recreateCards() {
   for (var i = 0; i < localStorage.length; i++) {
     var returnCard = localStorage.getItem(localStorage.key(i));
     var parsedCard = JSON.parse(returnCard);
-    cardCreator(parsedCard);
-  }
+    console.log(parsedCard.completed)
+    if (parsedCard.completed === false) { 
+      cardCreator(parsedCard);
+      } 
+    } 
 }
 
 function deleteCard() {
@@ -91,19 +113,19 @@ function upVote() {
   if (toDoObject.priority === 'none') {
     toDoObject.priority = 'low';
     storeObject(toDoObject);
-    $('#'+id.toString()+' .priority-text').text('low');
+    $('#'+id.toString()+' .priority-text').text('priority: low');
   } else if (toDoObject.priority === 'low') {
     toDoObject.priority = 'normal';
     storeObject(toDoObject);
-    $('#'+id.toString()+' .priority-text').text('normal');
+    $('#'+id.toString()+' .priority-text').text('priority: normal');
   } else if (toDoObject.priority === 'normal') {
     toDoObject.priority = 'high';
     storeObject(toDoObject);
-    $('#'+id.toString()+' .priority-text').text('high'); 
+    $('#'+id.toString()+' .priority-text').text('priority: high'); 
   } else if (toDoObject.priority === 'high') {
     toDoObject.priority = 'critical';
     storeObject(toDoObject);
-    $('#'+id.toString()+' .priority-text').text('critical');
+    $('#'+id.toString()+' .priority-text').text('priority: critical');
   }
 }
 
@@ -113,19 +135,19 @@ function downVote() {
   if (toDoObject.priority === 'critical') {
     toDoObject.priority = 'high';
     storeObject(toDoObject);
-    $('#'+id.toString()+' .priority-text').text('high');
+    $('#'+id.toString()+' .priority-text').text('priority: high');
   } else if (toDoObject.priority === 'high') {
     toDoObject.priority = 'normal';
     storeObject(toDoObject);
-    $('#'+id.toString()+' .priority-text').text('normal');
+    $('#'+id.toString()+' .priority-text').text('priority: normal');
   } else if (toDoObject.priority === 'normal') {
     toDoObject.priority = 'low';
     storeObject(toDoObject);
-    $('#'+id.toString()+' .priority-text').text('low');
+    $('#'+id.toString()+' .priority-text').text('priority: low');
   } else if (toDoObject.priority === 'low') {
     toDoObject.priority = 'none';
     storeObject(toDoObject);
-    $('#'+id.toString()+' .priority-text').text('none');
+    $('#'+id.toString()+' .priority-text').text('priority: none');
   }
 };
 
@@ -151,4 +173,4 @@ function filterToDos() {
   }
 }
       
-recreateCards();
+recreateCards();/**/

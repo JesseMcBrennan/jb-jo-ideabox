@@ -41,7 +41,7 @@
     transition: 0.6s;
     outline: none;
 }
-.save-button  {  
+button  {  
   margin: 2% auto 3% auto;
   background-color: #00A79D;
   color: #FFFFFF;
@@ -88,6 +88,10 @@ h3 {
   display: inline;
   font-weight: 800;
   font-size: 1.3vw;
+}
+
+.task-completed { 
+  text-decoration: line-through; 
 }
 
 .delete-container { 
