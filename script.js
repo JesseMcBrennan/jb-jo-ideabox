@@ -8,6 +8,7 @@ $('.input-title').on('keyup', toggleButton);
 $('.input-body').on('keyup', toggleButton);
 $('.search').on('keyup', filterToDos);
 
+
 function updateBody () {
   console.log('oooooo')
   var id = this.closest('article').id
@@ -55,13 +56,14 @@ function CardInfo (title, body) {
 
 function cardCreator(toDo) {
   $('.card-section').prepend(`<article id=${toDo.id} class="card">
+                      <div class="delete-container"><input type="button" name="delete button" class="delete-button"></div>
                       <h2 class="title-display" contenteditable="true">${toDo.title}</h2>
-                      <input type="button" name="delete button" class="delete-button">
                       <p class="card-body" contenteditable="true">${toDo.body}</p>
                       <input type="button" class="arrow-button upvote">
                       <input type="button" class="arrow-button downvote">
-                      <h3 class="priority">priority: 
-                        <span class="priority-text">${toDo.priority}</span>
+                      <h3 class="priority">
+                        <span class="priority-text">priority: ${toDo.priority}</span>
+                        <div><input id="check-completed" class="check-box" type="checkbox"><label for="check-completed">completed</label><div>
                       </h3>
                     </article>`);
 };
