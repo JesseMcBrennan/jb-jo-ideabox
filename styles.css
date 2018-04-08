@@ -26,9 +26,10 @@
   border: 2px solid #c6c6c6;
   display: block;
   font-size: 2vw;
-  height: 3vw;
   text-indent: 1%;
   width: 60vw;
+  overflow-wrap: normal;
+  resize: none;
 }
 .input::placeholder {
   color: #c6c6c6;
@@ -40,7 +41,7 @@
     transition: 0.6s;
     outline: none;
 }
-.save-button  {  
+button  {  
   margin: 2% auto 3% auto;
   background-color: #00A79D;
   color: #FFFFFF;
@@ -65,6 +66,11 @@ h2  {
   font-weight: 700;
 }
 
+h3 { 
+  display: flex;
+  justify-content: space-between;
+}
+
 .card-body  {
   margin: 3% 0;
   color: #939598;
@@ -83,16 +89,29 @@ h2  {
   font-weight: 800;
   font-size: 1.3vw;
 }
+
+.task-completed { 
+  text-decoration: line-through; 
+}
+
+.delete-container { 
+  display: flex;
+  justify-content: flex-end;
+}
+
 .delete-button  {
-  position: absolute;
-  right: 20%;
   background-image: url(icons/delete.svg);
   background-size: 2.7vw;
   border: 0;
   height: 2.7vw;
   width: 2.7vw;
   outline: none;
+  margin-bottom: 1%;
 }
+
+
+
+
 .downvote  {
   background-image: url(icons/downvote.svg);
   background-size: 2.7vw;
@@ -142,6 +161,7 @@ h2  {
   }
   .input-body  {
     height: 4em;
+    overflow-wrap: normal;
   }
   .save-button  {
     height: 6vw;
