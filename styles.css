@@ -49,28 +49,28 @@
   width: 60vw;
   padding: 0;
 }
-.save-button:hover  {
+.save-button:enabled:hover  {
   background-color: #045E55;
   color:#FFFFFF;
 }
+
+.save-button:disabled {
+  opacity: 0.5;
+}
+
 /*cards*/
 h2  {
   font-size: 3vw;
   color: #6D6E71;
   font-weight: 700;
 }
-.title-display  {
-  color: #6D6E71;
-  display: inline;
-  font-family: 'Roboto Slab', serif;
-  font-weight: 700;
-  font-size: 2.3vw;
-}
+
 .card-body  {
   margin: 3% 0;
   color: #939598;
   font-size: 1.5vw;
 }
+
 .card  {
   margin: 3% auto;
   padding-bottom: 2%;

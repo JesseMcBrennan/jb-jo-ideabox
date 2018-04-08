@@ -1,12 +1,28 @@
-
-recreateCards();
 $('.card-section').on('click', '.delete-button', deleteCard);
 $('.card-section').on('click', '.upvote', upVote);
 $('.card-section').on('click', '.downvote', downVote);
+$('.card-section').on('keyup', '.card-body', updateBody);
+$('.card-section').on('keyup', '.title-display', updateTitle);
 $('.save-button').on('click', newToDo);
 $('.input-title').on('keyup', toggleButton);
 $('.input-body').on('keyup', toggleButton);
 $('.search').on('keyup', filterToDos);
+
+function updateBody () {
+  console.log('oooooo')
+  var id = this.closest('article').id
+  var toDoObject = JSON.parse(localStorage.getItem(id));
+  toDoObject.body = $('#' + id.toString() + ' .card-body').text();
+  storeObject(toDoObject);
+}
+
+function updateTitle () {
+  console.log("iiiii")
+  var id = this.closest('article').id
+  var toDoObject = JSON.parse(localStorage.getItem(id));
+  toDoObject.title = $('#' + id.toString() +' .title-display').text();
+  storeObject(toDoObject);
+}
 
 function toggleButton () {  
   if ($('.input-title').val() === "" || $('.input-body').val() === "") {
@@ -39,7 +55,7 @@ function CardInfo (title, body) {
 
 function cardCreator(toDo) {
   $('.card-section').prepend(`<article id=${toDo.id} class="card">
-                      <h2 class=".title-display" contenteditable="true">${toDo.title}</h2>
+                      <h2 class="title-display" contenteditable="true">${toDo.title}</h2>
                       <input type="button" name="delete button" class="delete-button">
                       <p class="card-body" contenteditable="true">${toDo.body}</p>
                       <input type="button" class="arrow-button upvote">
@@ -133,4 +149,4 @@ function filterToDos() {
   }
 }
       
-
+recreateCards();
