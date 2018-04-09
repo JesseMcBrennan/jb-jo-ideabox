@@ -10,6 +10,10 @@ $('.search').on('keyup', filterToDos);
 $('.card-section').on('change', '.check-completed', toggleCompleted);
 $('.show-completed').on('click', showCompleted)
 
+// save todo and/or edited text on enter-key press
+
+
+
 function updateBody () {
   var id = this.closest('article').id
   var toDoObject = JSON.parse(localStorage.getItem(id));
@@ -26,12 +30,16 @@ function toggleCompleted() {
 }
 
 function showCompleted() { 
+  $('.card-section').html('');
+  renderCards();
   for (var i = 0; i < localStorage.length; i++) {
     var returnCard = localStorage.getItem(localStorage.key(i));
     var parsedCard = JSON.parse(returnCard);
     if (parsedCard.completed) { 
       cardCreator(parsedCard); 
-      $('#'+ parsedCard.id.toString()).prop("checked")
+      $('#'+ parsedCard.id.toString() + ' .check-completed').prop('checked', true)
+      $('#'+ parsedCard.id.toString()).addClass('task-completed');
+
     }
   }
 }
@@ -91,12 +99,11 @@ function storeObject(toDo) {
   localStorage.setItem(toDo.id, JSON.stringify(toDo));
 }
 
-function recreateCards() {
+function renderCards() {
   for (var i = 0; i < localStorage.length; i++) {
     var returnCard = localStorage.getItem(localStorage.key(i));
     var parsedCard = JSON.parse(returnCard);
-    console.log(parsedCard.completed)
-    if (parsedCard.completed === false) { 
+    if (!parsedCard.completed) { 
       cardCreator(parsedCard);
       } 
     } 
@@ -154,7 +161,7 @@ function downVote() {
 function validateSearch() { 
   var searchTerms = $('.search').val();
   if (!searchTerms) { 
-    recreateCards();
+    renderCards();
   } else {
       filterToDos()
   }
@@ -173,4 +180,4 @@ function filterToDos() {
   }
 }
       
-recreateCards();/**/
+renderCards();/**/
