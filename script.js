@@ -11,6 +11,22 @@ $('.search').on('keyup', filterToDos);
 $('.card-section').on('change', '.check-completed', toggleCompleted);
 $('.show-completed').on('click', showCompleted)
 
+$('.sort-button').on('click', sortByQuality)
+
+function sortByQuality() {
+  renderCards();
+    if ($(event.target).hasClass('quality-none')) {
+      $('article h3 .priority-text').not(':contains(none)').closest('article').hide();
+  } else if ($(event.target).hasClass('quality-low')) {
+      $('article h3 .priority-text').not(':contains(low)').closest('article').hide();
+  } else if ($(event.target).hasClass('quality-normal')) {
+      $('article h3 .priority-text').not(':contains(normal)').closest('article').hide();
+  } else if ($(event.target).hasClass('quality-high')) {
+      $('article h3 .priority-text').not(':contains(high)').closest('article').hide();
+  } else if ($(event.target).hasClass('quality-critical')) {
+      $('article h3 .priority-text').not(':contains(critical)').closest('article').hide();
+  }
+}
 
 // save todo and/or edited text on enter-key press
 
