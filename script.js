@@ -113,7 +113,7 @@ function renderCards(all) {
   } else {
     renderNumber = localStorage.length;
   }
-  for (var i = 0; i < renderNumber; i++) {
+  for (var i = localStorage.length - renderNumber; i < localStorage.length; i++) {
     var returnCard = localStorage.getItem(localStorage.key(i));
     var parsedCard = JSON.parse(returnCard);
     if (!parsedCard.completed) { 
