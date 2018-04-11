@@ -33,6 +33,19 @@ function updateBody () {
   var toDoObject = JSON.parse(localStorage.getItem(id));
   toDoObject.body = $('#' + id.toString() + ' .card-body').text();
   storeObject(toDoObject);
+  if (event.which == 13) {
+    this.blur();
+  }
+}
+
+function updateTitle () {
+  var id = this.closest('article').id
+  var toDoObject = JSON.parse(localStorage.getItem(id));
+  toDoObject.title = $('#' + id.toString() +' .title-display').text();
+  storeObject(toDoObject);
+  if (event.which == 13) {
+    this.blur();
+  }
 }
 
 function toggleCompleted() {
@@ -57,12 +70,6 @@ function showCompleted() {
   }
 }
 
-function updateTitle () {
-  var id = this.closest('article').id
-  var toDoObject = JSON.parse(localStorage.getItem(id));
-  toDoObject.title = $('#' + id.toString() +' .title-display').text();
-  storeObject(toDoObject);
-}
 
 function toggleButton () {  
   if ($('.input-title').val() === "" || $('.input-body').val() === "") {
