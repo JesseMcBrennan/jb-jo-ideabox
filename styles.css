@@ -11,23 +11,23 @@ html {
 }
 
 .container {
-  width: 50%;
   margin: auto;
+  width: 50%;
 }
 
 
 
 /*page title*/
 .ideabox  {
-  text-align: center;
-  padding: 3% 0 1% 0;
   font-family: 'Roboto Slab', serif;
-  font-weight: 700;
   font-size: 6rem;
+  font-weight: 700;
+  padding: 3% 0 1% 0;
+  text-align: center;
 }
 .head-idea  { 
-  display: inline;
   color: #00A79D;
+  display: inline;
 }
 .head-box  {
   color: #6D6E71;
@@ -43,14 +43,14 @@ html {
 }
 
 .input  {
-  margin: 2% auto;  
   border: 2px solid #c6c6c6;
   display: block;
   font-size: 2rem;
-  text-indent: 1%;
-  width: 100%;
+  margin: 2% auto;  
   overflow-wrap: normal;
   resize: none;
+  text-indent: 1%;
+  width: 100%;
 }
 .input::placeholder {
   color: #c6c6c6;
@@ -59,17 +59,17 @@ html {
 .input[type=text]:focus {
     background-color: #c4f2ee;
     border: 2px solid #00A79D;
-    transition: 0.6s;
     outline: none;
+    transition: 0.6s;
 }
 button  {  
-  margin: 1% auto;
   background-color: #00A79D;
   color: #FFFFFF;
   font-size: 2rem;
   height: 4vw;
-  width: 100%;
+  margin: 1% auto;
   padding: 0;
+  width: 100%;
 }
 
 .save-button:enabled:hover  {
@@ -91,30 +91,29 @@ button  {
 }
 
 
-
 /*cards*/
 h2  {
-  font-size: 3rem;
   color: #6D6E71;
+  font-size: 3rem;
   font-weight: 700;
 }
 
 h3 { 
   display: flex;
-  justify-content: space-between;
   font-size: 2rem;
+  justify-content: space-between;
 }
 
 .card-body  {
-  margin: 3% 0;
   color: #939598;
   font-size: 2.5rem;
+  margin: 3% 0;
 }
 
 .card  {
+  border-bottom: 1px solid #D1D3D4;
   margin: 3% auto;
   padding: 0 2% 2% 2%;
-  border-bottom: 1px solid #D1D3D4;
   width: 100%;
 }
 .quality {
@@ -135,19 +134,19 @@ h3 {
 
 .arrow-button  {
   background-image: url(icons/downvote.svg);
-  background-size: 2.7vw;
   background-repeat: no-repeat;
+  background-size: 2.7vw;
   border: 0;
   display: inline-block;
   height: 2.7vw;
-  width: 2.7vw;
   margin: 0 3%;
-  padding-bottom: 2%;
   outline: none;
+  padding-bottom: 2%;
+  width: 2.7vw;
 }
 
 
-.priority-text {
+.voting {
   width:60%;
 }
 
@@ -228,87 +227,3 @@ h3 {
     width: 100%;
   }
 }
-
-
-
-/*tablet*/
-
-/*@media only screen and (max-width: 1135px) {
-
-  .ideabox  {
-    font-size: 10rem;
-    padding: 3vw;
-  }
-  .top-section  {
-    top: 0px;
-    width: 100vw;
-    z-index: 1;
-  }
-  .input  {
-    width: 75vw;
-    height: 5vw;
-    padding: 1vw;
-    font-size: 3rem;
-  }
-  .input-body  {
-    height: 4em;
-    overflow-wrap: normal;
-  }
-  .save-button  {
-    height: 6vw;
-    width: 78vw;
-    outline: none;
-    font-size: 4rem;
-  }
-  .search  {
-    margin-top: 60vw;
-  }
-  .card  {
-    margin-top: 10vw;
-    width: 80vw;
-  }
-  h2  {
-    font-size: 6rem;
-  }
-  .card-body  {
-    font-size: 3vw;
-  }
-  .delete-button,
-  .arrow-button  {
-    background-color: white;
-    background-size: 20px;
-    height: 20px;
-    width: 20px;
-  }
-  .quality,
-  .quality-text  {
-    font-size: 2.5rem;
-  }
-}*/
-/*phone*/
-/*@media only screen and (max-width: 760px) and (min-width: 320px) {
-  .top-section  {
-    height: 89vw;
-  }
-  .ideabox  {
-    font-size: 12vw;
-    height: 10vw;
-    padding-top: 10vw;
-  }
-  .input  {
-    font-size: 5vw;
-    margin: 5vw;
-    width: 85vw;
-  }
-  .input-body  {
-    height: 4em;
-  }
-  .save-button  {
-    font-size: 5vw;
-    width: 88vw;
-    height: 10vw;
-  }
-  .search  {
-    margin-top: 95vw;
-  }
-}*/

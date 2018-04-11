@@ -10,12 +10,66 @@ $('.input-body').on('keyup', toggleButton);
 $('.search').on('keyup', filterToDos);
 $('.card-section').on('change', '.check-completed', toggleCompleted);
 $('.show-completed').on('click', showCompleted)
-
 $('.sort-button').on('click', sortByQuality)
+
+function toggleButton () {  
+  if ($('.input-title').val() === "" || $('.input-body').val() === "") {
+    $('.save-button').prop("disabled", true);
+  } else {
+    $('.save-button').prop("disabled", false);
+  }
+}
+
+function renderCards(all) { 
+  $('.card-section').html('');
+  var renderNumber;
+  if (localStorage.length > 10 && !all) {
+    renderNumber = 10;
+  } else {
+    renderNumber = localStorage.length;
+  }
+  for (var i = localStorage.length - renderNumber; i < localStorage.length; i++) {
+    var toDoObject = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    if (!toDoObject.completed) { 
+      cardCreator(toDoObject);
+    } 
+  } 
+}
+
+function CardInfo (title, body) {
+  this.title = title;
+  this.body = body;
+  this.priority = 'normal';
+  this.id = Date.now();
+  this.completed = false;
+}
+
+function cardCreator(toDo) {
+  $('.card-section').prepend(`<article id=${toDo.id} class="card">
+                      <div class="delete-container">
+                      <input type="button" name="delete button" class="delete-button arrow-button"></div>
+                      <h2 class="title-display editable" contenteditable="true">${toDo.title}</h2>
+                      <p class="card-body editable" contenteditable="true">${toDo.body}</p>
+                      <h3 class="priority">
+                        <span class="voting">
+                          <span class="arrows">
+                            <input type="button" class="arrow-button upvote">
+                            <input type="button" class="arrow-button downvote">
+                          </span>
+                          <span class="priority-text">priority: ${toDo.priority}</span>
+                        </span>
+                        <div>
+                          <input id="check-completed" class="check-completed" type="checkbox">
+                          <label for="check-completed">completed</label>
+                        </div>
+                      </h3>
+                    </article>`);
+}
+
 
 function sortByQuality() {
   renderCards();
-    if ($(event.target).hasClass('quality-none')) {
+  if ($(event.target).hasClass('quality-none')) {
       $('article h3 .priority-text').not(':contains(none)').closest('article').hide();
   } else if ($(event.target).hasClass('quality-low')) {
       $('article h3 .priority-text').not(':contains(low)').closest('article').hide();
@@ -25,6 +79,28 @@ function sortByQuality() {
       $('article h3 .priority-text').not(':contains(high)').closest('article').hide();
   } else if ($(event.target).hasClass('quality-critical')) {
       $('article h3 .priority-text').not(':contains(critical)').closest('article').hide();
+  }
+}
+
+function validateSearch() { 
+  var searchTerms = $('.search').val();
+  if (!searchTerms) { 
+    renderCards();
+  } else {
+      filterToDos()
+  }
+}
+
+function filterToDos() { 
+  $('.card-section').html('');
+  var searchTerms = $('.search').val();
+  for (var i = 0; i < localStorage.length; i++) { 
+    var key = localStorage.key(i);
+    var toDoObject = JSON.parse(localStorage.getItem(key));
+    if (toDoObject.title.toLowerCase().includes(searchTerms.toLowerCase()) || 
+      toDoObject.body.toLowerCase().includes(searchTerms.toLowerCase())) {
+      cardCreator(toDoObject)
+    }
   }
 }
 
@@ -60,22 +136,12 @@ function showCompleted() {
   $('.card-section').html('');
   renderCards();
   for (var i = 0; i < localStorage.length; i++) {
-    var returnCard = localStorage.getItem(localStorage.key(i));
-    var parsedCard = JSON.parse(returnCard);
-    if (parsedCard.completed) { 
-      cardCreator(parsedCard); 
-      $('#'+ parsedCard.id.toString() + ' .check-completed').prop('checked', true)
-      $('#'+ parsedCard.id.toString()).addClass('task-completed');
+    var toDoObject = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    if (toDoObject.completed) { 
+      cardCreator(toDoObject); 
+      $('#'+ toDoObject.id.toString() + ' .check-completed').prop('checked', true)
+      $('#'+ toDoObject.id.toString()).addClass('task-completed');
     }
-  }
-}
-
-
-function toggleButton () {  
-  if ($('.input-title').val() === "" || $('.input-body').val() === "") {
-    $('.save-button').prop("disabled", true);
-  } else {
-    $('.save-button').prop("disabled", false);
   }
 }
 
@@ -93,31 +159,6 @@ function clearInputFields() {
     $('.save-button').prop("disabled", true);
 }
 
-function CardInfo (title, body) {
-  this.title = title;
-  this.body = body;
-  this.priority = 'normal';
-  this.id = Date.now();
-  this.completed = false;
-}
-
-function cardCreator(toDo) {
-  $('.card-section').prepend(`<article id=${toDo.id} class="card">
-                      <div class="delete-container"><input type="button" name="delete button" class="delete-button arrow-button"></div>
-                      <h2 class="title-display editable" contenteditable="true">${toDo.title}</h2>
-                      <p class="card-body editable" contenteditable="true">${toDo.body}</p>
-                      <h3 class="priority">
-                      <span class="priority-text">
-                        <span class="arrows">
-                        <input type="button" class="arrow-button upvote">
-                        <input type="button" class="arrow-button downvote">
-                      </span>
-                          <span>priority: ${toDo.priority}</span>
-                      </span>
-                        <div><input id="check-completed" class="check-completed" type="checkbox"><label for="check-completed">completed</label><div>
-                      </h3>
-                    </article>`);
-}
 
 function storeObject(toDo) {
   localStorage.setItem(toDo.id, JSON.stringify(toDo));
@@ -127,22 +168,6 @@ function renderAll () {
   renderCards(1);
 }
 
-function renderCards(all) { 
-  $('.card-section').html('');
-  var renderNumber;
-  if (localStorage.length > 10 && !all) {
-    renderNumber = 10;
-  } else {
-    renderNumber = localStorage.length;
-  }
-  for (var i = localStorage.length - renderNumber; i < localStorage.length; i++) {
-    var returnCard = localStorage.getItem(localStorage.key(i));
-    var parsedCard = JSON.parse(returnCard);
-    if (!parsedCard.completed) { 
-      cardCreator(parsedCard);
-    } 
-  } 
-}
 
 function deleteCard() {
   this.closest('article').remove();
@@ -191,28 +216,6 @@ function downVote() {
     storeObject(toDoObject);
     $('#'+id.toString()+' .priority-text').text('priority: none');
   }
-};
-
-function validateSearch() { 
-  var searchTerms = $('.search').val();
-  if (!searchTerms) { 
-    renderCards();
-  } else {
-      filterToDos()
-  }
 }
 
-function filterToDos() { 
-  $('.card-section').html('');
-  var searchTerms = $('.search').val();
-  for (var i = 0; i < localStorage.length; i++) { 
-    var key = localStorage.key(i);
-    var toDo = JSON.parse(localStorage.getItem(key));
-    if (toDo.title.toLowerCase().includes(searchTerms.toLowerCase()) || 
-      toDo.body.toLowerCase().includes(searchTerms.toLowerCase())) {
-      cardCreator(toDo)
-    }
-  }
-}
-      
-renderCards();/**/
+ renderCards();
