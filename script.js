@@ -101,13 +101,17 @@ function CardInfo (title, body) {
 
 function cardCreator(toDo) {
   $('.card-section').prepend(`<article id=${toDo.id} class="card">
-                      <div class="delete-container"><input type="button" name="delete button" class="delete-button"></div>
+                      <div class="delete-container"><input type="button" name="delete button" class="delete-button arrow-button"></div>
                       <h2 class="title-display" contenteditable="true">${toDo.title}</h2>
                       <p class="card-body" contenteditable="true">${toDo.body}</p>
-                      <input type="button" class="arrow-button upvote">
-                      <input type="button" class="arrow-button downvote">
                       <h3 class="priority">
-                        <span class="priority-text">priority: ${toDo.priority}</span>
+                      <span class="priority-text">
+                        <span class="arrows">
+                        <input type="button" class="arrow-button upvote">
+                        <input type="button" class="arrow-button downvote">
+                      </span>
+                          <span>priority: ${toDo.priority}</span>
+                      </span>
                         <div><input id="check-completed" class="check-completed" type="checkbox"><label for="check-completed">completed</label><div>
                       </h3>
                     </article>`);
