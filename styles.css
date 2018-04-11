@@ -3,7 +3,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .controls {
@@ -155,6 +155,7 @@ h3 {
   padding-bottom: 2%;
   outline: none;
 }
+
 .upvote  {
   background-image: url(icons/upvote.svg);
   background-size: 2.7vw;
@@ -164,19 +165,78 @@ h3 {
   padding-bottom: 2%;
   outline: none;
 }
+
 .delete-button:hover  {
   background-image: url(icons/delete-hover.svg);
 }
-.upvote:hover  {
+
+.upvote:hover  { 
   background-image: url(icons/upvote-hover.svg);
 }
+
 .downvote:hover  {
   background-image: url(icons/downvote-hover.svg);
 }
+
+@media only screen and (max-width: 1350px) {
+  
+  html {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 1110px) {
+  
+  html {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 885px) {
+  
+  html {
+    font-size: 9px;
+  }
+
+  .container {
+    width: 65%;
+  }
+}
+
+@media only screen and (max-width: 635px) {
+  
+  html {
+    font-size: 7px;
+  }
+
+  .container {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 435px) {
+  
+  html {
+    font-size: 6px;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  button {
+    height: 5vh;
+  }
+}
+
+
+
 /*tablet*/
-/*@media only screen and (max-width: 1024px) {
+
+/*@media only screen and (max-width: 1135px) {
+
   .ideabox  {
-    font-size: 10vw;
+    font-size: 10rem;
     padding: 3vw;
   }
   .top-section  {
@@ -188,7 +248,7 @@ h3 {
     width: 75vw;
     height: 5vw;
     padding: 1vw;
-    font-size: 3vw;
+    font-size: 3rem;
   }
   .input-body  {
     height: 4em;
@@ -198,7 +258,7 @@ h3 {
     height: 6vw;
     width: 78vw;
     outline: none;
-    font-size: 4vw;
+    font-size: 4rem;
   }
   .search  {
     margin-top: 60vw;
@@ -208,7 +268,7 @@ h3 {
     width: 80vw;
   }
   h2  {
-    font-size: 6vw;
+    font-size: 6rem;
   }
   .card-body  {
     font-size: 3vw;
@@ -222,7 +282,7 @@ h3 {
   }
   .quality,
   .quality-text  {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
 }*/
 /*phone*/
