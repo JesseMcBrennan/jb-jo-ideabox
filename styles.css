@@ -102,17 +102,18 @@ h2  {
 h3 { 
   display: flex;
   justify-content: space-between;
+  font-size: 2rem;
 }
 
 .card-body  {
   margin: 3% 0;
   color: #939598;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 .card  {
   margin: 3% auto;
-  padding-bottom: 2%;
+  padding: 0 2% 2% 2%;
   border-bottom: 1px solid #D1D3D4;
   width: 100%;
 }
@@ -132,23 +133,12 @@ h3 {
   justify-content: flex-end;
 }
 
-.delete-button  {
-  background-image: url(icons/delete.svg);
-  background-size: 2.7vw;
-  border: 0;
-  height: 2.7vw;
-  width: 2.7vw;
-  outline: none;
-  margin-bottom: 1%;
-}
-
-
-
-
-.downvote  {
+.arrow-button  {
   background-image: url(icons/downvote.svg);
   background-size: 2.7vw;
+  background-repeat: no-repeat;
   border: 0;
+  display: inline-block;
   height: 2.7vw;
   width: 2.7vw;
   margin: 0 3%;
@@ -156,14 +146,17 @@ h3 {
   outline: none;
 }
 
+
+.priority-text {
+  width:60%;
+}
+
+.delete-button  {
+  background-image: url(icons/delete.svg);
+}
+
 .upvote  {
   background-image: url(icons/upvote.svg);
-  background-size: 2.7vw;
-  border: 0;
-  height: 2.7vw;
-  width: 2.7vw;
-  padding-bottom: 2%;
-  outline: none;
 }
 
 .delete-button:hover  {
@@ -212,6 +205,7 @@ h3 {
   .container {
     width: 75%;
   }
+
 }
 
 @media only screen and (max-width: 435px) {
@@ -220,12 +214,18 @@ h3 {
     font-size: 6px;
   }
 
-  .container {
-    width: 100%;
-  }
-
   button {
     height: 5vh;
+  }
+
+  .arrow-button {
+    background-size:cover;
+    height: 5vw;
+    width: 5vw;
+  }
+
+  .container {
+    width: 100%;
   }
 }
 
