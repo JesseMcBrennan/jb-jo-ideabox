@@ -1,13 +1,29 @@
-.top-section  {
+* { 
+ box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+.controls {
   background-color: #E5F3F2
 }
+
+.container {
+  width: 50%;
+  margin: auto;
+}
+
+
+
 /*page title*/
 .ideabox  {
   text-align: center;
   padding: 3% 0 1% 0;
   font-family: 'Roboto Slab', serif;
   font-weight: 700;
-  font-size: 6vw;
+  font-size: 6rem;
 }
 .head-idea  { 
   display: inline;
@@ -19,15 +35,20 @@
 }
 /*top two input fields*/
 .top-form {
-  text-align: center;
+  text-align: center; 
 }
+
+.form-top button {
+  margin: auto;
+}
+
 .input  {
   margin: 2% auto;  
   border: 2px solid #c6c6c6;
   display: block;
-  font-size: 2vw;
+  font-size: 2rem;
   text-indent: 1%;
-  width: 60vw;
+  width: 100%;
   overflow-wrap: normal;
   resize: none;
 }
@@ -42,12 +63,12 @@
     outline: none;
 }
 button  {  
-  margin: 2% auto 3% auto;
+  margin: 1% auto;
   background-color: #00A79D;
   color: #FFFFFF;
-  font-size: 2vw;
+  font-size: 2rem;
   height: 4vw;
-  width: 60vw;
+  width: 100%;
   padding: 0;
 }
 
@@ -60,15 +81,20 @@ button  {
   opacity: 0.5;
 }
 
-.sort-button {
-  position: flex;
-  margin: auto;
-  width: 11.8%;
+.show-options {
+  display: flex;
+  justify-content: space-between;
 }
+
+.sort-buttons {
+  display: flex;
+}
+
+
 
 /*cards*/
 h2  {
-  font-size: 3vw;
+  font-size: 3rem;
   color: #6D6E71;
   font-weight: 700;
 }
@@ -81,20 +107,20 @@ h3 {
 .card-body  {
   margin: 3% 0;
   color: #939598;
-  font-size: 1.5vw;
+  font-size: 1.5rem;
 }
 
 .card  {
   margin: 3% auto;
   padding-bottom: 2%;
   border-bottom: 1px solid #D1D3D4;
-  width: 60%;
+  width: 100%;
 }
 .quality {
   color: #6D6E71; 
   display: inline;
   font-weight: 800;
-  font-size: 1.3vw;
+  font-size: 1.3rem;
 }
 
 .task-completed { 
