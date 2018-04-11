@@ -10,7 +10,8 @@
   <script src="jQuery.js"></script>
 </head>
 <body>
-  <section class="top-section">
+  <div class="controls">
+  <section class="container">
     <header class="ideabox">
       <h1 class="head-idea">ToDo</h1>
       <h1 class="head-box">box</h1>
@@ -19,18 +20,21 @@
       <input class="input-title input" aria-label="field to enter in the title of your idea." type="text" name="title" placeholder="ToDo" maxlength="80">
       <textarea class="input-body input" aria-label="field to enter in the body of your idea." name="body" placeholder="Task" rows="4"></textarea>
       <button class="save-button" type="button" name="save" disabled>save</button>
-      <button class="show-completed" type="button" aria-label="show-completed">show completed TODOs</button>
-      <button class="show-more" type="button" aria-label="show-all">show more TODOs</button>
-      <div>
-      <button class="sort-button quality-none" type="button" aria-label="sort by quality none">None</button>
-      <button class="sort-button quality-low" type="button" aria-label="sort by quality-low">Low</button>
-      <button class="sort-button quality-normal" type="button" aria-label="sort by quality-normal">Normal</button>
-      <button class="sort-button quality-high" type="button" aria-label="sort by quality-high">High</button>
-      <button class="sort-button quality-critical" type="button" aria-label="sort by quality-critical">Critical</button>
+      <div class="show-options">
+        <button class="show-completed" type="button" aria-label="show-completed">show completed TODOs</button>
+        <button class="show-more" type="button" aria-label="show-all">show more TODOs</button>
+      </div>
+      <div class="sort-buttons">
+        <button class="sort-button quality-none" type="button" aria-label="sort by quality none">None</button>
+        <button class="sort-button quality-low" type="button" aria-label="sort by quality-low">Low</button>
+        <button class="sort-button quality-normal" type="button" aria-label="sort by quality-normal">Normal</button>
+        <button class="sort-button quality-high" type="button" aria-label="sort by quality-high">High</button>
+        <button class="sort-button quality-critical" type="button" aria-label="sort by quality-critical">Critical</button>
       </div>
     </form>
   </section>
-  <section>
+  </div>
+  <section class="container">
     <form class="bottom-form">
       <input class="search input" aria-label="field to enter your search criteria. This will search your saved ideas for key words." type="text" name="search" placeholder="Filter">
     </form>
