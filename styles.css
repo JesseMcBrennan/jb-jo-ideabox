@@ -124,7 +124,7 @@ h3 {
   font-size: 1.3rem;
 }
 
-.task-completed { 
+.task-completed .editable { 
   text-decoration: line-through; 
 }
 

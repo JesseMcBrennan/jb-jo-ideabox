@@ -28,9 +28,6 @@ function sortByQuality() {
   }
 }
 
-// save todo and/or edited text on enter-key press
-
-
 function updateBody () {
   var id = this.closest('article').id
   var toDoObject = JSON.parse(localStorage.getItem(id));
@@ -69,7 +66,6 @@ function showCompleted() {
       cardCreator(parsedCard); 
       $('#'+ parsedCard.id.toString() + ' .check-completed').prop('checked', true)
       $('#'+ parsedCard.id.toString()).addClass('task-completed');
-
     }
   }
 }
@@ -90,12 +86,12 @@ function newToDo() {
   cardCreator(newestToDo);
   storeObject(newestToDo);
   clearInputFields();
-};
+}
 
 function clearInputFields() {
     $('.input').val('');
     $('.save-button').prop("disabled", true);
-};
+}
 
 function CardInfo (title, body) {
   this.title = title;
@@ -103,13 +99,13 @@ function CardInfo (title, body) {
   this.priority = 'normal';
   this.id = Date.now();
   this.completed = false;
-};
+}
 
 function cardCreator(toDo) {
   $('.card-section').prepend(`<article id=${toDo.id} class="card">
                       <div class="delete-container"><input type="button" name="delete button" class="delete-button arrow-button"></div>
-                      <h2 class="title-display" contenteditable="true">${toDo.title}</h2>
-                      <p class="card-body" contenteditable="true">${toDo.body}</p>
+                      <h2 class="title-display editable" contenteditable="true">${toDo.title}</h2>
+                      <p class="card-body editable" contenteditable="true">${toDo.body}</p>
                       <h3 class="priority">
                       <span class="priority-text">
                         <span class="arrows">
@@ -121,7 +117,7 @@ function cardCreator(toDo) {
                         <div><input id="check-completed" class="check-completed" type="checkbox"><label for="check-completed">completed</label><div>
                       </h3>
                     </article>`);
-};
+}
 
 function storeObject(toDo) {
   localStorage.setItem(toDo.id, JSON.stringify(toDo));
@@ -146,7 +142,6 @@ function renderCards(all) {
       cardCreator(parsedCard);
     } 
   } 
-
 }
 
 function deleteCard() {
